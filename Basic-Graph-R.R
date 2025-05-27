@@ -51,21 +51,9 @@ aggregate(data$Petal.Length ~ data$Species, FUN = mean) #explore mean
 aggregate(data$Petal.Width ~ data$Species, FUN = mean) #explore mean
 # Mean for all variables based on groups
 aggregate(. ~ Species, data = iris, FUN = mean)
-# Use looping function to create mean vector for selected variables based on groups
-mean_group = matrix(0, 3, 5)
-colnames(mean_group) = c("Species", colnames(data[,-5]))
-for (k in 1:(ncol(data)-1)) {
-  y = data[,5]
-  x = data[,k]
-  agg_mean = aggregate(x ~ y, FUN = mean)
-  mean_group[,1]   = agg_mean[,1]
-  mean_group[,k+1] = agg_mean[,2]
-}
-mean_group
 
-
-# bagaimana nilai median pada sepal length dan width untuk setiap spesies?
-# buat dalam satu matrix
+# What is the median value of sepal length and sepal width for each species?
+# Make it in one matrix.
 
 ##### Basic Visualization #####
 # Barplot
@@ -176,7 +164,7 @@ x = 1:100
 y = rnorm(100, mean = 0, sd = 1)
 plot(x,y, type = "l")
 
-# Multiple line chart
+##### Multiple line chart #####
 library(quantmod)
 list_company  = c("FREN.JK", "BUMI.JK", "BBKP.JK",
                   "BBRI.JK", "BRMS.JK", "BBCA.JK",
