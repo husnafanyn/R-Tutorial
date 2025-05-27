@@ -1,14 +1,17 @@
 ###### Import Data #####
 # Import data from R Documentary
 data = iris
+
 # Export data from R
-write.csv(iris, file = "D:\\Bahan Ajar\\EV Data\\iris ekspor1.csv")
-# Import data from PC
-data1 = read.csv("D:\\Bahan Ajar\\EV Data\\iris ekspor1.csv")
-library(readxl)
+write.csv(iris, file = "D:\\Stat-BahanAjar\\EV Data\\iris ekspor1.csv")
 library(writexl)
-write_xlsx(iris, "D:\\Bahan Ajar\\EV Data\\iris ekspor2.xlsx")
-data2 = read_xlsx("D:\\Bahan Ajar\\EV Data\\iris ekspor2.xlsx")
+write_xlsx(iris, "D:\\Stat-BahanAjar\\EV Data\\iris ekspor2.xlsx")
+
+# Import data from PC
+data1 = read.csv("D:\\Stat-BahanAjar\\EV Data\\iris ekspor1.csv")
+library(readxl)
+data2 = read_xlsx("D:\\Stat-BahanAjar\\EV Data\\iris ekspor2.xlsx")
+
 
 ###### Explore data #####
 View(data)
@@ -46,7 +49,9 @@ aggregate(data$Sepal.Length ~ data$Species, FUN = mean) #explore mean
 aggregate(data$Sepal.Width ~ data$Species, FUN = mean) #explore mean
 aggregate(data$Petal.Length ~ data$Species, FUN = mean) #explore mean
 aggregate(data$Petal.Width ~ data$Species, FUN = mean) #explore mean
-# Use looping function to create mean vector for all variables based on groups
+# Mean for all variables based on groups
+aggregate(. ~ Species, data = iris, FUN = mean)
+# Use looping function to create mean vector for selected variables based on groups
 mean_group = matrix(0, 3, 5)
 colnames(mean_group) = c("Species", colnames(data[,-5]))
 for (k in 1:(ncol(data)-1)) {
@@ -57,6 +62,10 @@ for (k in 1:(ncol(data)-1)) {
   mean_group[,k+1] = agg_mean[,2]
 }
 mean_group
+
+
+# bagaimana nilai median pada sepal length dan width untuk setiap spesies?
+# buat dalam satu matrix
 
 ##### Basic Visualization #####
 # Barplot
@@ -82,7 +91,8 @@ legend("topleft", rownames(VADeaths),
 
 # 100% Stacked Barplot
 vade_percent = apply(VADeaths, 2, function(x){x*100/sum(x, na.rm = T)})
-barplot(vade_percent, col = c("brown", "chocolate", "coral", "cornsilk"), ylim = c(0,130))
+barplot(vade_percent, col = c("brown", "chocolate", "coral", "cornsilk"),
+        ylim = c(0,130))
 legend("topleft", rownames(VADeaths),
        fill = c("brown", "chocolate", "coral", "cornsilk"), cex = 0.7)
 
