@@ -139,6 +139,7 @@ lower     = function(x, y) {
   txt     = paste0("R = ", r)
   text(0.5, 0.5, txt)
 }
+colors_3 = c("red", "blue", "yellow")
 upper = function(x, y) {
   points(x,y, col = colors_3[data$Species])
 }
